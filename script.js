@@ -12974,6 +12974,7 @@ const dictionary = [
 ]
 
 const guessGrid = document.querySelector('[data-guess-grid]')
+
 startInteraction();
 
 function startInteraction() {
@@ -13008,7 +13009,7 @@ function handleKeyPress(e) {
     return
   }
 
-  if (e.key === 'Backspace' || 'Delete') {
+  if (e.key === 'Backspace' || e.key === 'Delete') {
     deleteKey()
     return
   }
@@ -13024,4 +13025,4 @@ function pressKey(key) {
   nextTile.dataset.letter = key.toLowerCase()
   nextTile.textContent = key
   nextTile.dataset.state = "active"
-}
+} 

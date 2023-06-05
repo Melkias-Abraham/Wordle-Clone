@@ -13054,6 +13054,16 @@ function sumbitGuess() {
     shakeTiles(activeTiles)
     return
    }
+
+   const guess = activeTiles.reduce((word, tile) => {
+    return word +tile.dataset.letter
+   }, "")
+
+   if (!dictionary.includes(guess)) {
+    showAlert("Not in word list")
+    shakeTiles(activeTiles)
+    return
+   }
 }
 
 function getActiveTiles() {

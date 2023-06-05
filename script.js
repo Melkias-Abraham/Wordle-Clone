@@ -12973,6 +12973,7 @@ const dictionary = [
   "shave"
 ]
 
+const guessGrid = document.querySelector('[data-guess-grid]')
 startInteraction();
 
 function startInteraction() {
@@ -12980,6 +12981,10 @@ function startInteraction() {
   document.addEventListener("keydown", handleKeyPress)
 }
 
+function stopInteraction() {
+  document.removeEventListener("click", handleMouseClick)
+  document.removeEventListener("keydown", handleKeyPress)
+}
 function handleMouseClick(e) {
   if (e.target.matches("[data-key]")) {
     pressKey(e.target.dataset.key)
@@ -13003,7 +13008,7 @@ function handleKeyPress(e) {
     return
   }
 
-  if (e.key == 'Backspace' || 'Delete') {
+  if (e.key === 'Backspace' || 'Delete') {
     deleteKey()
     return
   }
@@ -13012,4 +13017,11 @@ function handleKeyPress(e) {
     pressKey(e.key)
     return
   }
+}
+
+function pressKey(key) {
+  const nextTile = guessGrid.querySelector(":not([data-letter])")
+  nextTile.dataset.letter = key.toLowerCase()
+  nextTile.textContent = key
+  nextTile.dataset.state = "active"
 }

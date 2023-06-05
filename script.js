@@ -12988,6 +12988,7 @@ function stopInteraction() {
   document.removeEventListener("keydown", handleKeyPress);
 }
 function handleMouseClick(e) {
+  
   if (e.target.matches("[data-key]")) {
     pressKey(e.target.dataset.key);
     return
@@ -13002,6 +13003,7 @@ function handleMouseClick(e) {
     deleteKey();
     return
   }
+
 }
 
 function handleKeyPress(e) {

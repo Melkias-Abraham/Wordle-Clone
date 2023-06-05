@@ -3,6 +3,10 @@
   font-family: Arial;
 }
 
+svg {
+  pointer-events: none;
+}
+
 body {
   background-color: hsl(240, 3%, 7%);
   display: flex;

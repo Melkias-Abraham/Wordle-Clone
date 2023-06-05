@@ -12974,7 +12974,13 @@ const dictionary = [
 ]
 
 const guessGrid = document.querySelector('[data-guess-grid]')
+const alertContainer = document.querySelector("[data-alert-container]")
 const WORD_LENGTH = 5
+// const offsetFromDate = new Date(2023, 5, 1)
+// const msOffset = Date.now() - offsetFromDate
+// const dayOffset = msOffset / 1000 / 60 / 60 / 24
+const targetWord = dictionary[Math.floor(Math.random() * dictionary.length)]
+console.log(targetWord)
 
 startInteraction();
 
@@ -13041,6 +13047,30 @@ function deleteKey() {
   delete lastTile.dataset.letter
 }
 
+function sumbitGuess() {
+   const activeTiles = [...getActiveTiles()]
+   if (activeTiles.length !== WORD_LENGTH) {
+    showAlert("Not enough letters")
+    shakeTiles(activeTiles)
+    return
+   }
+}
+
 function getActiveTiles() {
   return guessGrid.querySelectorAll("[data-state='active']");
+}
+
+function showAlert(message, duration = 1000) {
+  const alert = document.createElement("div")
+  alert.textContent = message
+  alert.classList.add('alert')
+  alertContainer.prepend(alert)
+  if (duration == null) return
+
+  setTimeout(() => {
+    alert.classList.add('hide')
+    alert.addEventListener("transitionend", () => {
+      alert.remove()
+    })
+  }, duration)
 }
